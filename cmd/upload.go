@@ -1,44 +1,12 @@
 package cmd
 
 import (
-	"errors"
 	"os"
 
 	"github.com/meilisearch/meilisearch-go"
 	"github.com/rs/zerolog/log"
 	"github.com/urfave/cli/v2"
 )
-
-var flagFile = &cli.StringFlag{
-	Name:    "file",
-	Aliases: []string{"f"},
-	Action: func(context *cli.Context, s string) error {
-		_, err := os.Stat(s)
-		if err != nil {
-			if os.IsNotExist(err) {
-				return nil
-			}
-			return err
-		}
-		return nil
-	},
-}
-
-var flagHost = &cli.StringFlag{
-	Name:    "host",
-	Aliases: []string{"d"},
-	Action: func(context *cli.Context, s string) error {
-		if s != "" {
-			return nil
-		}
-		return errors.New("invalid dst addr")
-	},
-}
-
-var flagIndex = &cli.StringFlag{
-	Name:    "index",
-	Aliases: []string{"i"},
-}
 
 var cmdUpload = &cli.Command{
 	Name: "upload",

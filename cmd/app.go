@@ -7,6 +7,7 @@ func NewApp() *cli.App {
 		Name: "meilidex-upload",
 		Commands: []*cli.Command{
 			cmdUpload,
+			cmdClean,
 		},
 	}
 }
