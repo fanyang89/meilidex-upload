@@ -3,7 +3,6 @@ package cmd
 import (
 	"os"
 
-	"github.com/cockroachdb/errors"
 	"github.com/urfave/cli/v2"
 )
 
@@ -23,22 +22,19 @@ var flagFile = &cli.StringFlag{
 }
 
 var flagHost = &cli.StringFlag{
-	Name:    "host",
-	Aliases: []string{"d"},
-	Action: func(context *cli.Context, s string) error {
-		if s != "" {
-			return nil
-		}
-		return errors.New("invalid dst addr")
-	},
+	Name:     "host",
+	Aliases:  []string{"d"},
+	Required: true,
 }
 
 var flagIndex = &cli.StringFlag{
-	Name:    "index",
-	Aliases: []string{"i"},
+	Name:     "index",
+	Aliases:  []string{"i"},
+	Required: true,
 }
 
 var flagFetchBatch = &cli.Int64Flag{
 	Name:    "fetch-batch",
 	Aliases: []string{"b"},
+	Value:   10000,
 }
