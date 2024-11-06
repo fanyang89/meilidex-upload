@@ -14,9 +14,7 @@ var cmdUpload = &cli.Command{
 		flagHost, flagFile, flagIndex,
 	},
 	Action: func(c *cli.Context) error {
-		client := meilisearch.NewClient(meilisearch.ClientConfig{
-			Host: c.String("host"),
-		})
+		client := meilisearch.New(c.String("host"))
 
 		indexName := c.String("index")
 		task, err := client.CreateIndex(&meilisearch.IndexConfig{

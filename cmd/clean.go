@@ -11,7 +11,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-func getDocumentCount(idx *meilisearch.Index) (int64, error) {
+func getDocumentCount(idx meilisearch.IndexManager) (int64, error) {
 	total := int64(-1)
 	{
 		q := meilisearch.DocumentsQuery{
@@ -59,9 +59,7 @@ var cmdClean = &cli.Command{
 		toDelete := make(map[string]struct{})
 
 		indexName := c.String("index")
-		client := meilisearch.NewClient(meilisearch.ClientConfig{
-			Host: c.String("host"),
-		})
+		client := meilisearch.New(c.String("host"))
 
 		index := client.Index(indexName)
 		if index == nil {

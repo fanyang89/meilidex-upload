@@ -16,6 +16,6 @@ func main() {
 	app := cmd.NewApp()
 	err := app.Run(os.Args)
 	if err != nil {
-		log.Fatal().Err(err).Msg("Unexpected error happened")
+		log.Fatal().Err(err).Msg("Unexpected error")
 	}
 }
